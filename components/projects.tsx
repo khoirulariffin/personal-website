@@ -11,6 +11,7 @@ const projects = [
     description:
       "A modern drawing application built with Vue 3, Fabric.js, and TypeScript, following the Feature-Sliced Design (FSD) architecture.",
     url: "https://github.com/khoirulariffin/drawing",
+    demoUrl: "https://drawing-khoirulariffin.vercel.app/",
     contributions: 1,
     skills: ["Vue.js", "Fabric.js", "TypeScript", "FSD"],
   },
@@ -19,6 +20,7 @@ const projects = [
     description:
       "A modern Geographic Information System (GIS) application built with Vue 3, Leaflet, and Turf.js. This project is designed for area management (polygons), school location mapping, and logistics distribution optimization (Public Kitchen) using the Dijkstra algorithm (via OSRM).",
     url: "https://github.com/khoirulariffin/leaflet-geoman",
+    demoUrl: "https://khoirulariffin.github.io/vue-leaflet/#/",
     contributions: 13,
     skills: ["Vue.js", "Leaflet", "Turf.js", "OSRM", "Dijkstra"],
   },
@@ -78,7 +80,7 @@ export function Projects() {
                   <div className="z-10 sm:order-2 sm:col-span-6">
                     <h3>
                       <Link
-                        href={project.url}
+                        href={project.demoUrl || project.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary group/link text-base transition-colors duration-300"
