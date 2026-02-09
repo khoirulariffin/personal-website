@@ -24,38 +24,6 @@ const projects = [
     contributions: 13,
     skills: ["Vue.js", "Leaflet", "Turf.js", "OSRM", "Dijkstra"],
   },
-  {
-    title: "Inikilo - Uniqlo Web Clone",
-    description:
-      "A clone of the Uniqlo e-commerce website showcasing modern front-end development practices and responsive design.",
-    url: "https://github.com/khoirulariffin/inikilo",
-    contributions: 3,
-    skills: ["Vue.js", "E-commerce", "Responsive Design"],
-  },
-  {
-    title: "React Basic - Learning Notes",
-    description:
-      "A comprehensive learning project documenting React.js concepts including components, state management, and hooks.",
-    url: "https://github.com/khoirulariffin/react-basic",
-    contributions: 12,
-    skills: ["React.js", "Learning", "Documentation"],
-  },
-  {
-    title: "Custom React Hooks",
-    description:
-      "Collection of reusable custom React hooks for common use cases in modern web development.",
-    url: "https://github.com/khoirulariffin/custom-react-hooks",
-    contributions: 1,
-    skills: ["React.js", "Custom Hooks", "TypeScript"],
-  },
-  {
-    title: "Key Concepts - React Learning",
-    description:
-      "Documentation and examples of key React.js concepts for personal learning and reference.",
-    url: "https://github.com/khoirulariffin/key-concepts",
-    contributions: 2,
-    skills: ["React.js", "JavaScript", "Learning"],
-  },
 ];
 
 export function Projects() {
