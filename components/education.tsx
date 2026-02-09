@@ -7,7 +7,7 @@ import { FadeIn, ScaleIn } from "./animations";
 const education = [
   {
     period: "2023",
-    degree: "Full Stack Developer",
+    degree: "Full Stack JavaScript",
     school: "Hacktiv8 Indonesia",
     schoolUrl: "https://www.hacktiv8.com/",
     location: "Jakarta Selatan, DKI Jakarta",
@@ -55,7 +55,9 @@ export function Education() {
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                     <div>
-                      <h3 className="font-medium text-foreground transition-colors duration-300 group-hover:text-primary">{edu.degree}</h3>
+                      <h3 className="font-medium text-foreground transition-colors duration-300 group-hover:text-primary">
+                        {edu.degree}
+                      </h3>
                       {edu.schoolUrl ? (
                         <Link
                           href={edu.schoolUrl}
@@ -67,9 +69,13 @@ export function Education() {
                           <ExternalLink className="ml-1 h-3 w-3 transition-transform duration-300 hover:-translate-y-0.5 hover:translate-x-0.5" />
                         </Link>
                       ) : (
-                        <p className="text-sm text-muted-foreground">{edu.school}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {edu.school}
+                        </p>
                       )}
-                      <p className="text-xs text-muted-foreground">{edu.location}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {edu.location}
+                      </p>
                     </div>
                     <div className="text-right">
                       <span className="text-xs font-medium text-muted-foreground">
@@ -88,7 +94,11 @@ export function Education() {
                   {edu.highlights && (
                     <ul className="mt-3 space-y-1">
                       {edu.highlights.map((highlight, i) => (
-                        <FadeIn key={i} delay={index * 0.2 + i * 0.05} direction="left">
+                        <FadeIn
+                          key={i}
+                          delay={index * 0.2 + i * 0.05}
+                          direction="left"
+                        >
                           <li className="text-xs text-muted-foreground flex items-start gap-2 transition-colors duration-300 hover:text-foreground">
                             <span className="text-primary mt-1">•</span>
                             {highlight}

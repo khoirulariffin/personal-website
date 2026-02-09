@@ -1,16 +1,14 @@
 "use client";
 
-import React from "react"
-
 import { cn } from "@/lib/utils";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { type HTMLMotionProps, motion, useInView } from "framer-motion";
 import type { ReactNode } from "react";
+import { useRef } from "react";
 
-interface FadeInProps {
+interface BaseAnimationProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   className?: string;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right" | "none";
   duration?: number;
   once?: boolean;
 }
@@ -19,185 +17,182 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  direction = "up",
   duration = 0.5,
+  direction = "up",
   once = true,
-}: FadeInProps) {
-  const [ref, isInView] = useScrollAnimation<HTMLDivElement>({
-    threshold: 0.1,
-    triggerOnce: once,
-  });
+  ...props
+}: BaseAnimationProps & {
+  direction?: "up" | "down" | "left" | "right" | "none";
+}) {
+  const directions = {
+    up: { y: 20, x: 0 },
+    down: { y: -20, x: 0 },
+    left: { x: 20, y: 0 },
+    right: { x: -20, y: 0 },
+    none: { x: 0, y: 0 },
+  };
 
-  const directionStyles = {
-    up: "translate-y-8",
-    down: "-translate-y-8",
-    left: "translate-x-8",
-    right: "-translate-x-8",
-    none: "",
+  const initial = {
+    opacity: 0,
+    ...directions[direction],
   };
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all ease-out",
-        isInView
-          ? "opacity-100 translate-x-0 translate-y-0"
-          : `opacity-0 ${directionStyles[direction]}`,
-        className
-      )}
-      style={{
-        transitionDuration: `${duration}s`,
-        transitionDelay: `${delay}s`,
+    <motion.div
+      initial={initial}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once, margin: "-50px" }}
+      transition={{
+        duration,
+        delay,
+        ease: [0.21, 0.47, 0.32, 0.98], // Apple-like ease
       }}
-    >
-      {children}
-    </div>
-  );
-}
-
-interface StaggerContainerProps {
-  children: ReactNode;
-  className?: string;
-  staggerDelay?: number;
-}
-
-export function StaggerContainer({
-  children,
-  className,
-  staggerDelay = 0.1,
-}: StaggerContainerProps) {
-  const [ref, isInView] = useScrollAnimation<HTMLDivElement>({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  return (
-    <div
-      ref={ref}
       className={className}
-      style={
-        {
-          "--stagger-delay": `${staggerDelay}s`,
-          "--is-visible": isInView ? "1" : "0",
-        } as React.CSSProperties
-      }
+      {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
-}
-
-interface ScaleInProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-  duration?: number;
-}
-
-export function ScaleIn({
-  children,
-  className,
-  delay = 0,
-  duration = 0.4,
-}: ScaleInProps) {
-  const [ref, isInView] = useScrollAnimation<HTMLDivElement>({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all ease-out",
-        isInView ? "opacity-100 scale-100" : "opacity-0 scale-95",
-        className
-      )}
-      style={{
-        transitionDuration: `${duration}s`,
-        transitionDelay: `${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-interface SlideInProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-  direction?: "left" | "right";
-  duration?: number;
 }
 
 export function SlideIn({
   children,
   className,
   delay = 0,
-  direction = "left",
   duration = 0.5,
-}: SlideInProps) {
-  const [ref, isInView] = useScrollAnimation<HTMLDivElement>({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  direction = "left",
+  once = true,
+  ...props
+}: BaseAnimationProps & { direction?: "left" | "right" | "up" | "down" }) {
+  const variants = {
+    hidden: {
+      x: direction === "left" ? -50 : direction === "right" ? 50 : 0,
+      y: direction === "up" ? 50 : direction === "down" ? -50 : 0,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+    },
+  };
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all ease-out",
-        isInView
-          ? "opacity-100 translate-x-0"
-          : `opacity-0 ${direction === "left" ? "-translate-x-12" : "translate-x-12"}`,
-        className
-      )}
-      style={{
-        transitionDuration: `${duration}s`,
-        transitionDelay: `${delay}s`,
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, margin: "-50px" }}
+      variants={variants}
+      transition={{
+        duration,
+        delay,
+        ease: [0.21, 0.47, 0.32, 0.98],
       }}
+      className={className}
+      {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
-interface TypewriterProps {
-  text: string;
-  className?: string;
-  delay?: number;
-  speed?: number;
+export function ScaleIn({
+  children,
+  className,
+  delay = 0,
+  duration = 0.5,
+  once = true,
+  ...props
+}: BaseAnimationProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once }}
+      transition={{
+        duration,
+        delay,
+        ease: [0.21, 0.47, 0.32, 0.98],
+      }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggerContainer({
+  children,
+  className,
+  staggerDelay = 0.1,
+  once = true,
+  ...props
+}: BaseAnimationProps & { staggerDelay?: number }) {
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, margin: "-50px" }}
+      variants={{
+        visible: {
+          transition: {
+            staggerChildren: staggerDelay,
+          },
+        },
+      }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export function Typewriter({
   text,
   className,
   delay = 0,
-  speed = 50,
-}: TypewriterProps) {
-  const [ref, isInView] = useScrollAnimation<HTMLSpanElement>({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  speed = 0.05,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  speed?: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <span ref={ref} className={cn("inline-block", className)}>
       {text.split("").map((char, index) => (
-        <span
+        <motion.span
           key={index}
-          className={cn(
-            "inline-block transition-opacity duration-100",
-            isInView ? "opacity-100" : "opacity-0"
-          )}
-          style={{
-            transitionDelay: isInView ? `${delay + index * (speed / 1000)}s` : "0s",
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{
+            duration: 0.1,
+            delay: delay + index * speed,
+            ease: "easeOut",
           }}
+          className="inline-block"
         >
           {char === " " ? "\u00A0" : char}
-        </span>
+        </motion.span>
       ))}
     </span>
   );
 }
+
+export const motionItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};

@@ -41,11 +41,11 @@ const skillCategories = [
 ];
 
 const certifications = [
-  {
-    title: "Database Design and Database Programming",
-    issuer: "Oracle",
-    date: "Aug 2019",
-  },
+  // {
+  //   title: "Database Design and Database Programming",
+  //   issuer: "Oracle",
+  //   date: "Aug 2019",
+  // },
   {
     title: "Java Fundamental",
     issuer: "Oracle",
@@ -89,14 +89,21 @@ export function Skills() {
       {/* Skills Grid */}
       <div className="space-y-8">
         {skillCategories.map((category, categoryIndex) => (
-          <FadeIn key={category.title} delay={categoryIndex * 0.15} direction="up">
+          <FadeIn
+            key={category.title}
+            delay={categoryIndex * 0.15}
+            direction="up"
+          >
             <div>
               <h3 className="mb-3 text-sm font-medium text-foreground">
                 {category.title}
               </h3>
               <ul className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <ScaleIn key={skill} delay={categoryIndex * 0.15 + skillIndex * 0.03}>
+                  <ScaleIn
+                    key={skill}
+                    delay={categoryIndex * 0.15 + skillIndex * 0.03}
+                  >
                     <li>
                       <Badge
                         variant="secondary"
@@ -125,8 +132,12 @@ export function Skills() {
                 <div className="group relative rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:bg-secondary/50 hover:scale-[1.02] hover:shadow-lg hover:border-primary/30">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div>
-                      <h4 className="font-medium text-foreground transition-colors duration-300 group-hover:text-primary">{cert.title}</h4>
-                      <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                      <h4 className="font-medium text-foreground transition-colors duration-300 group-hover:text-primary">
+                        {cert.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {cert.issuer}
+                      </p>
                     </div>
                     <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">
                       {cert.date}

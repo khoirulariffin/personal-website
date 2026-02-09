@@ -7,20 +7,20 @@ import { FadeIn, ScaleIn } from "./animations";
 
 const projects = [
   {
-    title: "Employee Attendance Mockup App V2",
+    title: "Vue Drawing App",
     description:
-      "A web application built with React.js with TailwindCSS for styling. Features employee attendance tracking and management functionality.",
-    url: "https://github.com/khoirulariffin/Employee-Attendance-Mockup-App-V2",
-    contributions: 18,
-    skills: ["React.js", "TailwindCSS", "JavaScript"],
+      "A modern drawing application built with Vue 3, Fabric.js, and TypeScript, following the Feature-Sliced Design (FSD) architecture.",
+    url: "https://github.com/khoirulariffin/drawing",
+    contributions: 1,
+    skills: ["Vue.js", "Fabric.js", "TypeScript", "FSD"],
   },
   {
-    title: "CopyStation Admin",
+    title: "Vue Leaflet GeoManager & Routing Optimization",
     description:
-      "Admin dashboard for managing copy station operations with comprehensive CRUD functionality and reporting features.",
-    url: "https://github.com/khoirulariffin/copystation-admin",
-    contributions: 35,
-    skills: ["React.js", "Admin Dashboard", "CRUD"],
+      "A modern Geographic Information System (GIS) application built with Vue 3, Leaflet, and Turf.js. This project is designed for area management (polygons), school location mapping, and logistics distribution optimization (Public Kitchen) using the Dijkstra algorithm (via OSRM).",
+    url: "https://github.com/khoirulariffin/leaflet-geoman",
+    contributions: 13,
+    skills: ["Vue.js", "Leaflet", "Turf.js", "OSRM", "Dijkstra"],
   },
   {
     title: "Inikilo - Uniqlo Web Clone",
@@ -73,7 +73,7 @@ export function Projects() {
           {projects.map((project, index) => (
             <FadeIn key={index} delay={index * 0.12} direction="up">
               <li className="mb-12">
-                <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-100! lg:group-hover/list:opacity-50">
                   <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all duration-300 motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-secondary/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg lg:group-hover:scale-[1.02]" />
                   <div className="z-10 sm:order-2 sm:col-span-6">
                     <h3>
@@ -108,9 +108,15 @@ export function Projects() {
                         View on GitHub
                       </Link>
                     </div>
-                    <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
+                    <ul
+                      className="mt-2 flex flex-wrap"
+                      aria-label="Technologies used"
+                    >
                       {project.skills.map((skill, skillIndex) => (
-                        <ScaleIn key={skill} delay={index * 0.12 + skillIndex * 0.05}>
+                        <ScaleIn
+                          key={skill}
+                          delay={index * 0.12 + skillIndex * 0.05}
+                        >
                           <li className="mr-1.5 mt-2">
                             <Badge
                               variant="secondary"

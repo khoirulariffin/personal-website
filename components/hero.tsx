@@ -2,7 +2,14 @@
 
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
-import { FadeIn, SlideIn, Typewriter } from "./animations";
+import {
+  FadeIn,
+  SlideIn,
+  StaggerContainer,
+  Typewriter,
+  motionItem,
+} from "./animations";
+import { motion } from "framer-motion";
 
 const navigation = [
   { name: "ABOUT", href: "#about" },
@@ -25,7 +32,7 @@ const socials = [
   },
   {
     name: "Email",
-    href: "mailto:contact@khoirulariffin.dev",
+    href: "mailto:khoirulariffin@gmail.com",
     icon: Mail,
   },
 ];
@@ -36,68 +43,102 @@ export function Hero() {
       <div>
         <SlideIn direction="left" duration={0.6}>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            <Typewriter text="Khoirul Ariffin" speed={80} />
+            <Typewriter text="Khoirul Ariffin" speed={0.1} />
           </h1>
         </SlideIn>
-        
-        <FadeIn delay={0.8} direction="up">
+
+        <FadeIn delay={0.2} direction="up">
           <h2 className="mt-3 text-lg font-medium tracking-tight text-primary sm:text-xl">
             Front End Developer
           </h2>
         </FadeIn>
-        
-        <FadeIn delay={1} direction="up">
+
+        <FadeIn delay={0.4} direction="up">
           <p className="mt-4 max-w-xs leading-relaxed text-muted-foreground">
             I build accessible, interactive digital experiences for the web with
             a passion for Automotive and Information Technology.
           </p>
         </FadeIn>
-        
-        <FadeIn delay={1.2} direction="up">
+
+        <FadeIn delay={0.5} direction="up">
           <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-            <MapPin className="h-4 w-4 animate-bounce" />
+            <motion.div
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
+              <MapPin className="h-4 w-4" />
+            </motion.div>
             <span>Bekasi, West Java, Indonesia</span>
           </div>
         </FadeIn>
 
-        <nav className="nav hidden lg:block" aria-label="In-page jump links">
-          <ul className="mt-16 w-max">
-            {navigation.map((item, index) => (
-              <FadeIn key={item.name} delay={1.4 + index * 0.1} direction="left">
-                <li>
-                  <a
+        <div className="hidden lg:block">
+          <StaggerContainer
+            className="mt-16 w-max"
+            staggerDelay={0.1}
+            delay={0.6}
+          >
+            <ul className="w-max" aria-label="In-page jump links">
+              {navigation.map((item) => (
+                <motion.li key={item.name}>
+                  <motion.a
                     className="group flex items-center py-3"
                     href={item.href}
+                    whileHover="hover"
+                    initial="initial"
                   >
-                    <span className="nav-indicator mr-4 h-px w-8 bg-muted-foreground transition-all group-hover:w-16 group-hover:bg-foreground group-focus-visible:w-16 group-focus-visible:bg-foreground motion-reduce:transition-none" />
-                    <span className="nav-text text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-foreground group-focus-visible:text-foreground">
+                    <motion.span
+                      className="mr-4 h-px bg-muted-foreground transition-colors group-hover:bg-foreground group-focus-visible:bg-foreground"
+                      variants={{
+                        initial: { width: 32 },
+                        hover: { width: 64 },
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                    />
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-foreground group-focus-visible:text-foreground">
                       {item.name}
                     </span>
-                  </a>
-                </li>
-              </FadeIn>
-            ))}
-          </ul>
-        </nav>
+                  </motion.a>
+                </motion.li>
+              ))}
+            </ul>
+          </StaggerContainer>
+        </div>
       </div>
 
-      <FadeIn delay={1.8} direction="up">
-        <ul className="mt-8 flex items-center gap-5" aria-label="Social media">
-          {socials.map((social, index) => (
-            <li key={social.name} className="animate-fade-in-up" style={{ animationDelay: `${1.9 + index * 0.1}s` }}>
-              <Link
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-muted-foreground transition-all duration-300 hover:text-foreground hover:scale-125 hover:-translate-y-1"
-                aria-label={`${social.name} (opens in a new tab)`}
+      <StaggerContainer
+        className="mt-8 flex items-center gap-5 pl-4"
+        aria-label="Social media"
+        delay={1.2}
+        staggerDelay={0.1}
+      >
+        {socials.map((social) => (
+          <motion.li key={social.name}>
+            <Link
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${social.name} (opens in a new tab)`}
+            >
+              <motion.div
+                whileHover={{ scale: 1.2, y: -4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="text-muted-foreground transition-colors hover:text-foreground"
               >
                 <social.icon className="h-6 w-6" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </FadeIn>
+              </motion.div>
+            </Link>
+          </motion.li>
+        ))}
+      </StaggerContainer>
     </header>
   );
 }

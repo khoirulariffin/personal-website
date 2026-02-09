@@ -6,10 +6,10 @@ import { FadeIn, ScaleIn } from "./animations";
 
 const volunteering = [
   {
-    role: "Community Contributor",
-    organization: "Tech Community",
+    role: "Internal Division",
+    organization: "Faktabahasa Bekasi",
     description:
-      "Actively contributing to the developer community by sharing knowledge, participating in discussions, and helping fellow developers with technical challenges.",
+      "Coordinated each internal event such as the enrollment process for new members and tutors, outings, as well as consultation sessions.",
     skills: ["Knowledge Sharing", "Mentoring", "Community Building"],
   },
 ];
@@ -31,11 +31,9 @@ export function Volunteering() {
           {volunteering.map((vol, index) => (
             <FadeIn key={index} delay={index * 0.15} direction="up">
               <li className="mb-12">
-                <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-100! lg:group-hover/list:opacity-50">
                   <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all duration-300 motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-secondary/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg lg:group-hover:scale-[1.02]" />
-                  <div
-                    className="z-10 mb-2 mt-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:col-span-2"
-                  >
+                  <div className="z-10 mb-2 mt-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:col-span-2">
                     <Heart className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-125" />
                     <span>Volunteer</span>
                   </div>
@@ -52,7 +50,10 @@ export function Volunteering() {
                     </p>
                     <ul className="mt-2 flex flex-wrap" aria-label="Skills">
                       {vol.skills.map((skill, skillIndex) => (
-                        <ScaleIn key={skill} delay={index * 0.15 + skillIndex * 0.05}>
+                        <ScaleIn
+                          key={skill}
+                          delay={index * 0.15 + skillIndex * 0.05}
+                        >
                           <li className="mr-1.5 mt-2">
                             <Badge
                               variant="secondary"

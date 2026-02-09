@@ -10,15 +10,16 @@ const experiences = [
     period: "Jul 2023 — Present",
     title: "Frontend Developer",
     company: "PT. NTX Solusi Teknologi",
-    companyUrl: "https://www.linkedin.com/company/ntx-solusi-teknologi",
+    companyUrl: "https://www.ntxsolution.com/",
     description:
       "Transforming UI/UX designs into interactive, responsive, and user-centric web interfaces. Developing and optimizing navigation flow and user experience to align with business objectives. Executing thorough debugging, testing, and performance tuning of front-end components.",
-    skills: ["JavaScript", "React.js", "Vue.js", "TailwindCSS", "Responsive Design"],
+    skills: ["JavaScript", "Vue.js", "TailwindCSS", "Responsive Design"],
   },
   {
     period: "Apr 2021 — Dec 2022",
     title: "Warehouse Administrator",
     company: "Soluchain.ID",
+    companyUrl: "https://soluchain.id/",
     description:
       "Checked and reviewed inbound and outbound activities, ensuring accuracy and adherence to procedures. Generated informative reports for the Head Office. Optimized and maintained effective control measures for petty cash.",
     skills: ["Inventory Management", "Reporting", "Operations"],
@@ -27,10 +28,16 @@ const experiences = [
     period: "Jul 2018 — Oct 2020",
     title: "Service Advisor → PIC Claim C1 & C2 → Warehouse Coordinator",
     company: "PT Bekasi Motor - Honda Motorcycle Wing Dealership",
-    companyUrl: "https://www.linkedin.com/company/pt-bekasi-motor",
+    companyUrl: "https://www.linkedin.com/company/bekasimotor/",
     description:
       "Started as Service Advisor understanding customer needs and providing expert advice on motorcycle services. Promoted to PIC Claim C1 & C2 conducting comprehensive analysis of spare parts claims. Advanced to Warehouse Coordinator managing workshop activities, inventory, and logistics coordination.",
-    skills: ["Customer Service", "Claims Analysis", "Logistics", "Inventory", "Operations"],
+    skills: [
+      "Customer Service",
+      "Claims Analysis",
+      "Logistics",
+      "Inventory",
+      "Operations",
+    ],
     roles: [
       { title: "Warehouse Coordinator", period: "Mar 2019 — Oct 2020" },
       { title: "PIC Claim C1 And C2", period: "Oct 2018 — Jun 2020" },
@@ -41,6 +48,7 @@ const experiences = [
     period: "Aug 2016 — Jul 2017",
     title: "Line Operator",
     company: "PT. Resin Plating Technology",
+    companyUrl: "https://www.rptech.co.id/RPT/",
     description:
       "Operated the injection molding process, ensuring the proper flow and distribution of molten plastic into the mold cavities. Performed regular quality checks on molded parts, inspecting for defects, dimensional accuracy, and conformity to specifications. Implemented Kaizen principles, enhancing production efficiency through continuous improvement.",
     skills: ["Injection Molding", "Quality Control", "Kaizen", "Production"],
@@ -48,11 +56,21 @@ const experiences = [
   {
     period: "Jan 2015 — Apr 2015",
     title: "Software Engineering Technician",
-    company: "State University of Jakarta (Universitas Negeri Jakarta)",
-    companyUrl: "https://www.linkedin.com/school/universitas-negeri-jakarta",
+    company:
+      "State University of Jakarta (Universitas Negeri Jakarta) - (Intership)",
+    companyUrl: "https://unj.ac.id/",
     description:
       "Entry and update various types of data into the designated databases or computer systems accurately and efficiently.",
     skills: ["Data Entry", "Database Management", "Software Engineering"],
+  },
+  {
+    period: "Aug 2014 — Nov 2014",
+    title: "Part Keeper",
+    company: "PT. NOK Indonesia - (Intership)",
+    companyUrl: "https://www.nokgrp.com/en/",
+    description:
+      "Maintained and updated spare parts inventory and ensuring accurate records.",
+    skills: ["Inventory Management", "Data Entry"],
   },
 ];
 
@@ -73,7 +91,7 @@ export function Experience() {
           {experiences.map((exp, index) => (
             <FadeIn key={index} delay={index * 0.15} direction="up">
               <li className="mb-12">
-                <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-100! lg:group-hover/list:opacity-50">
                   <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all duration-300 motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-secondary/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg lg:group-hover:scale-[1.02]" />
                   <header
                     className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:col-span-2"
@@ -93,7 +111,9 @@ export function Experience() {
                           >
                             <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block" />
                             <span>
-                              {"roles" in exp ? exp.company : `${exp.title} · ${exp.company}`}
+                              {"roles" in exp
+                                ? exp.company
+                                : `${exp.title} · ${exp.company}`}
                               <ExternalLink className="ml-1 inline-block h-4 w-4 shrink-0 transition-transform duration-300 group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none" />
                             </span>
                           </Link>
@@ -107,11 +127,18 @@ export function Experience() {
                     {"roles" in exp && exp.roles && (
                       <div className="mt-3 space-y-2">
                         {exp.roles.map((role, roleIndex) => (
-                          <div key={roleIndex} className="flex items-start gap-2 text-sm">
+                          <div
+                            key={roleIndex}
+                            className="flex items-start gap-2 text-sm"
+                          >
                             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                             <div>
-                              <span className="font-medium text-foreground">{role.title}</span>
-                              <span className="ml-2 text-xs text-muted-foreground">({role.period})</span>
+                              <span className="font-medium text-foreground">
+                                {role.title}
+                              </span>
+                              <span className="ml-2 text-xs text-muted-foreground">
+                                ({role.period})
+                              </span>
                             </div>
                           </div>
                         ))}
@@ -120,9 +147,15 @@ export function Experience() {
                     <p className="mt-2 text-sm leading-normal text-muted-foreground">
                       {exp.description}
                     </p>
-                    <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
+                    <ul
+                      className="mt-2 flex flex-wrap"
+                      aria-label="Technologies used"
+                    >
                       {exp.skills.map((skill, skillIndex) => (
-                        <ScaleIn key={skill} delay={index * 0.15 + skillIndex * 0.05}>
+                        <ScaleIn
+                          key={skill}
+                          delay={index * 0.15 + skillIndex * 0.05}
+                        >
                           <li className="mr-1.5 mt-2">
                             <Badge
                               variant="secondary"

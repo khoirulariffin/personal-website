@@ -19,15 +19,20 @@ export function About() {
           <p>
             A confident person with experienced customer service and warehouse
             development with a keen interest in{" "}
-            <span className="font-medium text-foreground transition-colors hover:text-primary">Automotive</span> and{" "}
+            <span className="font-medium text-foreground transition-colors hover:text-primary">
+              Automotive
+            </span>{" "}
+            and{" "}
             <span className="font-medium text-foreground transition-colors hover:text-primary">
               Information Technology
             </span>
             . Currently working as a{" "}
-            <span className="font-medium text-foreground">Frontend Developer</span>{" "}
+            <span className="font-medium text-foreground">
+              Frontend Developer
+            </span>{" "}
             at{" "}
             <a
-              href="https://www.linkedin.com/company/ntx-solusi-teknologi"
+              href="https://www.ntxsolution.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-primary hover:underline underline-offset-4 transition-all"
@@ -37,15 +42,16 @@ export function About() {
             .
           </p>
         </FadeIn>
-        
+
         <FadeIn delay={0.1} direction="up">
           <p>
             With over{" "}
-            <span className="font-medium text-foreground">7 years</span> of total
-            professional experience, I transitioned from warehouse operations and
-            customer service to software development. I completed an intensive{" "}
+            <span className="font-medium text-foreground">7 years</span> of
+            total professional experience, I transitioned from warehouse
+            operations and customer service to software development. I completed
+            an intensive{" "}
             <span className="font-medium text-foreground">
-              Full Stack Developer
+              Full Stack JavaScript
             </span>{" "}
             program at{" "}
             <a
@@ -56,27 +62,29 @@ export function About() {
             >
               Hacktiv8 Indonesia
             </a>{" "}
-            in 2023, where I mastered JavaScript, React.js, Vue.js, Express.js, and
-            React Native.
+            in 2023, where I mastered JavaScript, React.js, Vue.js, Express.js,
+            and React Native.
           </p>
         </FadeIn>
-        
+
         <FadeIn delay={0.2} direction="up">
           <p>
             I specialize in transforming UI/UX designs into{" "}
             <span className="font-medium text-foreground transition-colors hover:text-primary">
               interactive, responsive, and user-centric
             </span>{" "}
-            web interfaces. My diverse background gives me a unique perspective on
-            building products that truly serve users and business objectives.
+            web interfaces. My diverse background gives me a unique perspective
+            on building products that truly serve users and business objectives.
           </p>
         </FadeIn>
-        
+
         <FadeIn delay={0.3} direction="up">
           <p>
             When {"I'm"} not coding, {"you'll"} find me exploring my passion for{" "}
-            <span className="font-medium text-foreground transition-colors hover:text-primary">motorcycles</span> or
-            keeping up with the latest in technology.
+            <span className="font-medium text-foreground transition-colors hover:text-primary">
+              motorcycles
+            </span>{" "}
+            or keeping up with the latest in technology.
           </p>
         </FadeIn>
       </div>
