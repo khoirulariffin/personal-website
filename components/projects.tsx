@@ -7,9 +7,9 @@ import { FadeIn, ScaleIn } from "./animations";
 
 const projects = [
   {
-    title: "Vue Spreadsheet",
+    title: "Vue Excel App",
     description:
-      "A feature-rich, Excel-like spreadsheet application built with Vue 3, TypeScript, and TailwindCSS. Supports importing/exporting .xlsx files, cell formatting, shapes, formulas, and a multi-mode workflow (Designer, Operator, Manual).",
+      "A feature-rich, spreadsheet application built with Vue 3, TypeScript, and TailwindCSS. Supports importing/exporting .xlsx files, cell formatting, shapes, formulas, and a multi-mode workflow (Designer, Operator, Manual).",
     url: "https://github.com/khoirulariffin/vue-excel",
     demoUrl: "https://excel-khoirulariffin.vercel.app/",
     contributions: 4,
